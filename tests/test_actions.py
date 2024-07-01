@@ -1,8 +1,22 @@
-import pytest
-from ai_developer.actions import create_directory
+import unittest
+from actions import Actions
 
+class TestActions(unittest.TestCase):
 
-def test_create_directory(self):
-    # Test case to create a directory
-    response = create_directory("/home/user/repo/tests/test_directory")
-    assert response == "success"
+    def setUp(self):
+        self.actions = Actions()
+
+    def test_action1(self):
+        result = self.actions.action1()
+        self.assertEqual(result, expected_result)
+
+    def test_action2(self):
+        result = self.actions.action2()
+        self.assertEqual(result, expected_result)
+
+    def test_action3(self):
+        result = self.actions.action3()
+        self.assertEqual(result, expected_result)
+
+if __name__ == '__main__':
+    unittest.main()
