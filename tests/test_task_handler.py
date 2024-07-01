@@ -1,48 +1,24 @@
-import pytest
-from ai_developer.task_handler import TaskHandler
+import unittest
+from task_handler import TaskHandler
 
+class TestTaskHandler(unittest.TestCase):
 
-class TestTaskHandler:
-    @pytest.fixture
-    def task_handler(self, mocker):
-        client = mocker.Mock()
-        sandbox = mocker.Mock()
-        assistant = mocker.Mock()
-        console = mocker.Mock()
-        return TaskHandler(client, sandbox, assistant, console)
+    def setUp(self):
+        self.task_handler = TaskHandler()
 
-    def test_create_thread(self, task_handler):
-        # TODO: Implement a test stub for create_thread.
-        assert True
+    def test_task_creation(self):
+        task = self.task_handler.create_task('Test Task')
+        self.assertEqual(task.name, 'Test Task')
 
-    def test_create_run(self, task_handler):
-        # TODO: Implement a test stub for create_run.
-        assert True
+    def test_task_completion(self):
+        task = self.task_handler.create_task('Test Task')
+        self.task_handler.complete_task(task)
+        self.assertTrue(task.is_completed)
 
-    def test_process_run(self, task_handler):
-        # TODO: Implement a test stub for process_run.
-        assert True
+    def test_task_deletion(self):
+        task = self.task_handler.create_task('Test Task')
+        self.task_handler.delete_task(task)
+        self.assertNotIn(task, self.task_handler.tasks)
 
-    def test_monitor_run(self, task_handler):
-        # TODO: Implement a test stub for monitor_run.
-        assert True
-
-    def test_has_status_changed(self, task_handler):
-        # TODO: Implement a test stub for has_status_changed.
-        assert True
-
-    def test_display_status(self, task_handler):
-        # TODO: Implement a test stub for display_status.
-        assert True
-
-    def test_handle_action_required(self, task_handler):
-        # TODO: Implement a test stub for handle_action_required.
-        assert True
-
-    def test_handle_completion(self, task_handler):
-        # TODO: Implement a test stub for handle_completion.
-        assert True
-
-    def test_retrieve_run(self, task_handler):
-        # TODO: Implement a test stub for retrieve_run.
-        assert True
+if __name__ == '__main__':
+    unittest.main()
